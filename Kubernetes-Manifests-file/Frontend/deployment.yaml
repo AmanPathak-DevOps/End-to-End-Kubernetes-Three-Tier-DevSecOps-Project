@@ -16,17 +16,17 @@ spec:
   selector:
     matchLabels: 
       role: frontend
-    template:
-      metadata:
-        labels:
-          role: frontend
-      spec: 
-        containers:
-        - name: frontend
-          image: public.ecr.aws/c7h8k8z2/frontend:latest
-          imagePullPolicy: Always
-          env:
-            - name: REACT_APP_BACKEND_URL
-              value: "http://backend.amanpathakdevops.study/api/tasks"
-          ports:
-          - containerPort: 3000
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec: 
+      containers:
+      - name: frontend
+        image: public.ecr.aws/c7h8k8z2/frontend:latest
+        imagePullPolicy: Always
+        env:
+          - name: REACT_APP_BACKEND_URL
+            value: "http://backend.amanpathakdevops.study/api/tasks"
+        ports:
+        - containerPort: 3000
