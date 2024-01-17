@@ -21,6 +21,8 @@ spec:
       labels:
         role: frontend
     spec: 
+      imagePullSecrets:
+      - name: ecr-registry-secret
       containers:
       - name: frontend
         image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
