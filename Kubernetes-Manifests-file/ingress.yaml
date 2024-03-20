@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: backend.amanpathakdevops.study
+    - host: http://three-tier-backend.devopsenthusiast.infinityfreeapp.com
       http:
         paths:
           - path: /api
