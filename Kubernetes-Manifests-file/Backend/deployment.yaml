@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
+metadata:
   name: api
   namespace: three-tier
-  labels: 
+  labels:
     role: api
     env: demo
-spec: 
+spec:
   replicas: 2
-  strategy: 
+  strategy:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 25%
-  selector: 
+  selector:
     matchLabels:
       role: api
   template:
@@ -25,7 +25,7 @@ spec:
       - name: ecr-registry-secret
       containers:
       - name: api
-        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:latest
+        image: <IMAGE-URI>backend:latest
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
@@ -42,16 +42,23 @@ spec:
                 key: password
         ports:
         - containerPort: 3500
-        livenessProbe: 
+        livenessProbe:
           httpGet:
-            path: /ok
+            path: /healthz
             port: 3500
           initialDelaySeconds: 2
           periodSeconds: 5
         readinessProbe:
           httpGet:
-            path: /ok
+            path: /ready
             port: 3500
           initialDelaySeconds: 5
           periodSeconds: 5
           successThreshold: 1
+        startupProbe:
+          httpGet:
+            path: /started
+            port: 3500
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 30
