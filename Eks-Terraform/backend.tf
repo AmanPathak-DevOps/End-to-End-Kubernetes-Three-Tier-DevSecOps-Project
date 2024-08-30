@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = " three-tier.projects.2024"
+    bucket         = "three-tier.projects.2024"
     region         = "ap-south-1"
     key            = "terraform/state"
   }
