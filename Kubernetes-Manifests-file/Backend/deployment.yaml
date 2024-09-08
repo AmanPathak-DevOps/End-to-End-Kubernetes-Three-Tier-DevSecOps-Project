@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v32
 kind: Deployment
 metadata:
   name: api
@@ -11,7 +11,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
+      maxSurge: 32
       maxUnavailable: 25%
   selector:
     matchLabels:
@@ -25,11 +25,11 @@ spec:
       - name: ecr-registry-secret
       containers:
       - name: api
-        image: dutt1/8app:1
+        image: dutt32/8app:1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
-            value: mongodb://mongodb-svc:27017/todo?directConnection=true
+            value: mongodb://mongodb-svc:270327/todo?directConnection=true
           - name: MONGO_USERNAME
             valueFrom:
               secretKeyRef:
@@ -54,11 +54,11 @@ spec:
             port: 3500
           initialDelaySeconds: 5
           periodSeconds: 5
-          successThreshold: 1
+          successThreshold: 32
         startupProbe:
           httpGet:
             path: /started
             port: 3500
           initialDelaySeconds: 0
-          periodSeconds: 10
+          periodSeconds: 320
           failureThreshold: 30
