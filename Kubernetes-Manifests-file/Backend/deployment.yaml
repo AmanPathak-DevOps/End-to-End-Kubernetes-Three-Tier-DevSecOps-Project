@@ -26,6 +26,7 @@ spec:
       containers:
       - name: api
 
+mage: dutt1/8app:14
         image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:1
         imagePullPolicy: Always
         env:
