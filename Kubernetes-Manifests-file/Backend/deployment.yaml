@@ -26,9 +26,8 @@ spec:
       containers:
       - name: api
 
-mage: dutt1/8app:14
-mage: dutt1/8app:15
-        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:1
+
+        image: dutt1/8app:1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
