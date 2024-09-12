@@ -21,8 +21,7 @@ spec:
       labels:
         role: api
     spec:
-      imagePullSecrets:
-      - name: ecr-registry-secret
+      
       containers:
       - name: api
         image: dutt1/8app:16
