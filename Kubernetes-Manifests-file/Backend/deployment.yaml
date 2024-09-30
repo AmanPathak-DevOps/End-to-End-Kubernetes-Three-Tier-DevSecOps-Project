@@ -24,7 +24,7 @@ spec:
       
       containers:
       - name: api
-        image: dutt1/8app:16
+        image: dutt1/3app:v0
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
