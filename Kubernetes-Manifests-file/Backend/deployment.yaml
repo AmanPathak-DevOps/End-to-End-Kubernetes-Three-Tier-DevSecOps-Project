@@ -1,63 +1,65 @@
-apiVersion:6 apps/v1
-kind:6 Deployment
-metadata:6
-  name:6 api
-  namespace:6 three-tier
-  labels:6
-    role:6 api
-    env:6 demo
-spec:6
-  replicas:6 2
-  strategy:6
-    type:6 RollingUpdate
-    rollingUpdate:6
-      maxSurge:6 32
-      maxUnavailable:6 25%
-  selector:6
-    matchLabels:6
-      role:6 api
-  template:6
-    metadata:6
-      labels:6
-        role:6 api
-    spec:6
-      
-      containers:6
-      - name:6 api
-        image:6 dutt1/3app:v1
-        imagePullPolicy:6 Always
-        env:6
-          - name:6 MONGO_CONN_STR
-            value:6 mongodb://mongodb-svc:270327/todo?directConnection=true
-          - name:6 MONGO_USERNAME
-            valueFrom:6
-              secretKeyRef:6
-                name:6 mongo-sec
-                key:6 username
-          - name:6 MONGO_PASSWORD
-            valueFrom:6
-              secretKeyRef:6
-                name:6 mongo-sec
-                key:6 password
-        ports:6
-        - containerPort:6 3500
-        livenessProbe:6
-          httpGet:6
-            path:6 /healthz
-            port:6 3500
-          initialDelaySeconds:6 2
-          periodSeconds:6 5
-        readinessProbe:6
-          httpGet:6
-            path:6 /ready
-            port:6 3500
-          initialDelaySeconds:6 5
-          periodSeconds:6 5
-          successThreshold:6 32
-        startupProbe:6
-          httpGet:6
-            path:6 /started
-            port:6 3500
-          initialDelaySeconds:6 0
-          periodSeconds:6 320
-          failureThreshold:6 30
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: three-tier
+  labels:
+    role: api
+    env: demo
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      role: api
+  template:
+    metadata:
+      labels:
+        role: api
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: api
+        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:1
+        imagePullPolicy: Always
+        env:
+          - name: MONGO_CONN_STR
+            value: mongodb://mongodb-svc:27017/todo?directConnection=true
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongo-sec
+                key: username
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongo-sec
+                key: password
+        ports:
+        - containerPort: 3500
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3500
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 3500
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+        startupProbe:
+          httpGet:
+            path: /started
+            port: 3500
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          failureThreshold: 30
