@@ -8,7 +8,7 @@ metadata:
     role: api
     env: demo
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
