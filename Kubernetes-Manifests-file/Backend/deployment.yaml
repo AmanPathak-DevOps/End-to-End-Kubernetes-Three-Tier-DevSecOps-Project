@@ -26,7 +26,7 @@ spec:
       - name: ecr-registry-secret
       containers:
       - name: api
-        image: dutt1/16be:replaceImageTag
+        image: dutt1/16be:v1.1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
