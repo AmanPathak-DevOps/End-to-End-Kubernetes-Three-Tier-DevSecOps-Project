@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,11 +21,9 @@ spec:
       labels:
         role: api
     spec:
-      imagePullSecrets:
-      - name: ecr-registry-secret
       containers:
       - name: api
-        image: dutt1/28abe:v1
+        image: dutt1/gitlabbe:latest
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
@@ -67,3 +64,4 @@ spec:
           initialDelaySeconds: 0
           periodSeconds: 10
           failureThreshold: 30
+
