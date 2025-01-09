@@ -41,6 +41,10 @@ spec:
               secretKeyRef:
                 name: mongo-sec
                 key: password
+          - name: REDIS_HOST
+            value: "redis" # Redis Service name
+          - name: REDIS_PORT
+            value: "6379
         ports:
         - containerPort: 3500
         livenessProbe:
