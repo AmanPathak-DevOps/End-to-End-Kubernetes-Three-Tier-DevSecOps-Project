@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: dutt1/gitlabbe:latest
+        image: dutt1/28abe:v1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
