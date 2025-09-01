@@ -21,11 +21,9 @@ spec:
       labels:
         role: api
     spec:
-      imagePullSecrets:
-      - name: ecr-registry-secret
       containers:
       - name: api
-        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/backend:1
+        image: dutt1/28abe:v1
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
@@ -40,6 +38,7 @@ spec:
               secretKeyRef:
                 name: mongo-sec
                 key: password
+          
         ports:
         - containerPort: 3500
         livenessProbe:
@@ -62,3 +61,4 @@ spec:
           initialDelaySeconds: 0
           periodSeconds: 10
           failureThreshold: 30
+
