@@ -7,9 +7,9 @@ sudo apt install openjdk-17-jdk -y
 java --version
 
 # Installing Jenkins
-docker pull jenkins/jenkins:lts
-docker volume create jenkins_data
-docker run -d --name jenkins_container -p 8080:8080 -p 50000:50000 -v jenkins_data:/var/jenkins_home jenkins/jenkins:lts
+# docker pull jenkins/jenkins:lts
+# docker volume create jenkins_data
+# docker run -d --name jenkins_container -p 8080:8080 -p 50000:50000 -v jenkins_data:/var/jenkins_home jenkins/jenkins:lts
 
 
 # Installing Docker 
@@ -22,7 +22,7 @@ sudo systemctl restart docker
 sudo chmod 777 /var/run/docker.sock
 
 # If you don't want to install Jenkins, you can create a container of Jenkins
-# docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-container jenkins/jenkins:lts
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins-container jenkins/jenkins:lts
 
 # Run Docker Container of Sonarqube
 #!/bin/bash
