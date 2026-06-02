@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git credentialsId: 'GITHUB', url: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
+                git credentialsId: 'GITHUB', url: 'https://github.com/hari-akkinapalli/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
             }
         }
         stage('Sonarqube Analysis') {
@@ -82,20 +82,20 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'GITHUB', url: 'https://github.com/AmanPathak-DevOps/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
+                git credentialsId: 'GITHUB', url: 'https://github.com/hari-akkinapalli/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
             }
         }
         stage('Update Deployment file') {
             environment {
                 GIT_REPO_NAME = "End-to-End-Kubernetes-Three-Tier-DevSecOps-Project"
-                GIT_USER_NAME = "AmanPathak-DevOps"
+                GIT_USER_NAME = "hari-akkinapalli"
             }
             steps {
                 dir('Kubernetes-Manifests-file/Frontend') {
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            git config user.email "aman07pathak@gmail.com"
-                            git config user.name "AmanPathak-DevOps"
+                            git config user.email "anvharikrishna@gmail.com"
+                            git config user.name "hari-akkinapalli"
                             BUILD_NUMBER=${BUILD_NUMBER}
                             echo $BUILD_NUMBER
                             imageTag=$(grep -oP '(?<=frontend:)[^ ]+' deployment.yaml)
