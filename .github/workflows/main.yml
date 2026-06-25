@@ -1,0 +1,21 @@
+name: first_workflow
+#on: workflow_dispatch
+on: 
+  push:
+      branches: [ "master" ]
+  pull_request:
+      branches: [ "master" ]
+jobs:
+  setup:
+    runs-on: ubuntu-slim
+    steps:
+      - name: clone-repo
+        run: | 
+          echo "hello clone repos step"
+          echo "good afterroon running on single step of both echo commands"
+
+  second-job:
+    runs-on: ubuntu-slim
+    steps:
+      - name: second-stage
+        run: echo "hello second-stage"
